@@ -15,29 +15,33 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CarsFilterCubit, CarsFilterState>(
-      builder: (_, state) => IconButton(
-        icon: Badge(
-          position: BadgePosition.topRight(),
-          badgeContent: Text(
-            context.bloc<CarsFilterCubit>().countFilters.toString(),
-            style: TextStyle(
-              color: Colors.white,
+      builder: (_, state) => Padding(
+        padding: const EdgeInsets.only(right: 16),
+        child: IconButton(
+          icon: Badge(
+            position: BadgePosition.topRight(),
+            badgeContent: Text(
+              context.bloc<CarsFilterCubit>().countFilters.toString(),
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            badgeColor: Theme.of(context).primaryColor,
+            child: Icon(
+              Icons.tune,
+              color: Colors.grey[600],
+              size: 28,
             ),
           ),
-          badgeColor: Theme.of(context).primaryColor,
-          child: Icon(
-            Octicons.settings,
-            color: Colors.grey,
-          ),
+          onPressed: () {
+            if (panelController.isPanelOpen) {
+              panelController.close();
+            } else {
+              context.bloc<CarsFeedCubit>().openSlidingPanel();
+              panelController.open();
+            }
+          },
         ),
-        onPressed: () {
-          if (panelController.isPanelOpen) {
-            panelController.close();
-          } else {
-            context.bloc<CarsFeedCubit>().openSlidingPanel();
-            panelController.open();
-          }
-        },
       ),
     );
   }

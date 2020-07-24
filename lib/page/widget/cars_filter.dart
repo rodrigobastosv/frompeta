@@ -14,77 +14,73 @@ class CarsFilter extends StatelessWidget {
       child: BlocBuilder<CarsFeedCubit, CarsFeedState>(
         buildWhen: (previous, current) => current is OpenedSlidingPanel,
         builder: (_, state) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            ListTile(
-              leading: IconButton(
-                icon: Icon(Icons.keyboard_arrow_down),
-                onPressed: () =>
-                    context.bloc<CarsFeedCubit>().closeSlidingPanel(),
-              ),
-              title: Text(
-                'Filtrar',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1e2c4c),
-                ),
-              ),
-            ),
+            const SizedBox(height: 60),
             PickBrand(context.bloc<CarsFeedCubit>().allBrands),
-            Divider(),
+            Divider(
+              color: Colors.black.withOpacity(0.65),
+              height: 40,
+              indent: 20,
+              endIndent: 20,
+            ),
             PickColor(context.bloc<CarsFeedCubit>().allColors),
+            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Expanded(
-                    child: OutlineButton(
-                      padding: const EdgeInsets.all(18),
-                      onPressed: () =>
-                          context.bloc<CarsFilterCubit>().clearFilters(),
-                      child: Text(
-                        'Limpar',
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      color: Colors.white,
+                  OutlineButton(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 60,
+                      vertical: 20,
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: RaisedButton(
-                        padding: const EdgeInsets.all(18),
-                        onPressed: () {
-                          final brands =
-                              context.bloc<CarsFilterCubit>().pickedBrands;
-                          final colors =
-                              context.bloc<CarsFilterCubit>().pickedColors;
-
-                          context.bloc<CarsFeedCubit>().applyFiltersOnSearch(
-                                brands: brands,
-                                colors: colors,
-                              );
-
-                          context.bloc<CarsFeedCubit>().closeSlidingPanel();
-                        },
-                        child: Text(
-                          'Aplicar',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
+                    onPressed: () =>
+                        context.bloc<CarsFilterCubit>().clearFilters(),
+                    child: Text(
+                      'Limpar',
+                      style: TextStyle(
                         color: Theme.of(context).primaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
+                    color: Colors.white,
+                  ),
+                  const SizedBox(width: 20),
+                  FlatButton(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 60,
+                      vertical: 20,
+                    ),
+                    onPressed: () {
+                      final brands =
+                          context.bloc<CarsFilterCubit>().pickedBrands;
+                      final colors =
+                          context.bloc<CarsFilterCubit>().pickedColors;
+
+                      context.bloc<CarsFeedCubit>().applyFiltersOnSearch(
+                            brands: brands,
+                            colors: colors,
+                          );
+
+                      context.bloc<CarsFeedCubit>().closeSlidingPanel();
+                    },
+                    child: Text(
+                      'Aplicar',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: Theme.of(context).primaryColor,
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

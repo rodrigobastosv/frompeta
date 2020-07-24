@@ -19,7 +19,7 @@ class PickColor extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
               child: Text(
                 'Cor',
                 style: TextStyle(
@@ -29,19 +29,20 @@ class PickColor extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 12),
-            Wrap(
-              direction: Axis.horizontal,
-              runSpacing: 1,
-              children: colors.map(
-                (color) {
-                  return ColorTile(
-                    key: UniqueKey(),
-                    color: color,
-                    value: cubit.isColorPicked(color),
-                  );
-                },
-              ).toList(),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Wrap(
+                runSpacing: 20,
+                children: colors.map(
+                  (color) {
+                    return ColorTile(
+                      key: UniqueKey(),
+                      color: color,
+                      value: cubit.isColorPicked(color),
+                    );
+                  },
+                ).toList(),
+              ),
             ),
           ],
         );
@@ -58,32 +59,46 @@ class ColorTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        RoundCheckBox(
-          isChecked: value,
-          onTap: (value) {
-            if (value) {
-              context.bloc<CarsFilterCubit>().pickColor(color);
-            } else {
-              context.bloc<CarsFilterCubit>().unpickColor(color);
-            }
-          },
-          checkedWidget: Icon(
-            Icons.check,
-            color: Colors.blue,
+    return Container(
+      width: (MediaQuery.of(context).size.width / 2) - 20,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          RoundCheckBox(
+            size: 30,
+            borderColor: value ? Color(0xFF0065ff) : Color(0xFFdddddd),
+            isChecked: value,
+            onTap: (value) {
+              if (value) {
+                context.bloc<CarsFilterCubit>().pickColor(color);
+              } else {
+                context.bloc<CarsFilterCubit>().unpickColor(color);
+              }
+            },
+            checkedWidget: Icon(
+              Icons.check,
+              color: Color(0xFF0065ff),
+              size: 16,
+            ),
+            checkedColor: Theme.of(context).scaffoldBackgroundColor,
+            uncheckedColor: Colors.yellow,
+            uncheckedWidget: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: _getColorFromColorId(color.colorId),
+              ),
+            ),
           ),
-          checkedColor: Theme.of(context).scaffoldBackgroundColor,
-          uncheckedColor: Colors.yellow,
-          uncheckedWidget: Container(
-            color: _getColorFromColorId(color.colorId),
+          SizedBox(width: 8),
+          Text(
+            color.name,
+            style: TextStyle(
+              fontSize: 16,
+              color: Color(0xFF768095),
+            ),
           ),
-        ),
-        SizedBox(width: 8),
-        Text(color.name),
-        SizedBox(width: 45),
-      ],
+        ],
+      ),
     );
   }
 
@@ -92,11 +107,11 @@ class ColorTile extends StatelessWidget {
       case '1':
         return Colors.transparent;
       case '2':
-        return Colors.grey;
+        return Color(0xFFd8dae1);
       case '3':
         return Colors.black;
       case '4':
-        return Colors.red;
+        return Color(0xFFfc4a40);
       default:
         return Colors.white;
     }

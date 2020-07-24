@@ -18,7 +18,7 @@ class PickBrand extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 18),
+            padding: const EdgeInsets.only(left: 20),
             child: Text(
               'Marca',
               style: TextStyle(
@@ -29,12 +29,30 @@ class PickBrand extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(20),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(color: Color(0xFFd3d5dc)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(color: Color(0xFFd3d5dc)),
+                ),
+                isDense: true,
                 hintText: 'Busca por nome...',
-                suffixIcon: Icon(Icons.search),
+                hintStyle: TextStyle(
+                  color: Color(0xFF768095),
+                  fontSize: 16,
+                  letterSpacing: -0.2,
+                ),
+                suffixIcon: Icon(
+                  Icons.search,
+                  size: 24,
+                  color: Color(0xFFa5abb7),
+                ),
               ),
             ),
           ),
@@ -48,12 +66,17 @@ class PickBrand extends StatelessWidget {
                 title: Row(
                   children: <Widget>[
                     CircleAvatar(
+                      backgroundColor: Colors.white,
                       backgroundImage:
                           AssetImage(_getAssetByBrandId(brand.brandId)),
-                      maxRadius: 20,
                     ),
-                    SizedBox(width: 16),
-                    Text(brand.name.capitalize()),
+                    SizedBox(width: 20),
+                    Text(
+                      brand.name.capitalize(),
+                      style: TextStyle(
+                        color: Color(0xFF768095),
+                      ),
+                    ),
                   ],
                 ),
                 value: cubit.isBrandPicked(brand),

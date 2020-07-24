@@ -13,10 +13,11 @@ class CarImage extends StatelessWidget {
       children: <Widget>[
         Center(
           child: Container(
+            height: 140,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(car.imageUrl),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
@@ -25,10 +26,12 @@ class CarImage extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 5,
+          top: 8,
+          right: 8,
           child: Icon(
-            FontAwesome.heart,
+            Icons.favorite_border,
             color: Colors.white,
+            size: 26,
           ),
         ),
       ],

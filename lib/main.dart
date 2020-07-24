@@ -18,6 +18,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xFF0065ff),
+        fontFamily: 'CircularStd',
+        textTheme: TextTheme(
+          bodyText2: TextStyle(letterSpacing: -0.5),
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        unselectedWidgetColor: Color(0xFFa5abb7),
+        buttonTheme: ButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MultiRepositoryProvider(

@@ -34,13 +34,19 @@ class _CarsFeedViewState extends State<CarsFeedView> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: CircleAvatar(
-          backgroundImage: AssetImage('assets/images/logo.png'),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/logo.png'),
+          ),
         ),
         title: Text(
           'VW Seminovos',
           style: TextStyle(
-            color: Colors.black,
+            letterSpacing: -0.5,
+            color: Color(0xFF4b5670),
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
         ),
         actions: <Widget>[
@@ -59,6 +65,8 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               controller: panelController,
               backdropEnabled: true,
               minHeight: 0,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+              header: _buildHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
             );
@@ -68,6 +76,8 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               controller: panelController,
               backdropEnabled: true,
               minHeight: 0,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+              header: _buildHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
             );
@@ -81,6 +91,40 @@ class _CarsFeedViewState extends State<CarsFeedView> {
             );
           }
         },
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_down,
+              size: 36,
+              color: Colors.black.withOpacity(0.25),
+            ),
+            onPressed: () => context.bloc<CarsFeedCubit>().closeSlidingPanel(),
+          ),
+          Expanded(
+            child: Text(
+              'Filtrar',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1e2c4c),
+              ),
+            ),
+          ),
+          const SizedBox(width: 50),
+        ],
       ),
     );
   }

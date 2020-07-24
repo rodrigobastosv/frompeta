@@ -34,6 +34,13 @@ flutter:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: CircularStd
+      fonts:
+        - asset: assets/fonts/CircularStd/CircularStd-Book.ttf
+          weight: 400
+        - asset: assets/fonts/CircularStd/CircularStd-Bold.ttf
+          weight: 700
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -11,40 +11,50 @@ class CarInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        const SizedBox(height: 8),
         RichText(
           maxLines: 1,
           text: TextSpan(
+            style: TextStyle(
+              letterSpacing: -0.5,
+              color: Color(0xFF4b5670),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'CircularStd',
+            ),
             children: [
               TextSpan(
-                text: ' ${car.modelName.toUpperCase()}',
-                style: TextStyle(color: Color(0xFF4b5670), fontSize: 18),
+                text: '${car.brandName.toUpperCase()}',
               ),
               TextSpan(
-                text: ' ${car.brandName.toUpperCase()}',
+                text: ' ${car.modelName.toUpperCase()}',
                 style: TextStyle(
-                    color: Theme.of(context).primaryColor, fontSize: 18),
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ],
           ),
         ),
+        const SizedBox(height: 8),
         Text(
-          '${car.modelYear} - ${car.fuelType}',
+          '${car.modelYear} · ${car.fuelType}',
           style: TextStyle(
             color: Color(0xFF768095),
           ),
         ),
+        const SizedBox(height: 8),
         Text(
-          '${car.transmissionType} - ${car.mileage} km',
+          '${car.transmissionType} · ${car.mileage} km',
           style: TextStyle(
             color: Color(0xFF768095),
           ),
         ),
+        const SizedBox(height: 8),
         Text(
           'R\$ ${car.price}',
           style: TextStyle(
+            color: Color(0xFF1e2c4c),
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1e2c4c),
           ),
         ),
       ],
