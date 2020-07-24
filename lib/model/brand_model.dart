@@ -18,9 +18,4 @@ class BrandModel extends Equatable {
 
   @override
   List<Object> get props => [brandId];
-
-  @override
-  String toString() {
-    return 'BrandModel{brandId: $brandId, name: $name}';
-  }
 }

@@ -12,7 +12,7 @@ class CarsFeedCubit extends Cubit<CarsFeedState> {
       : assert(repository != null),
         super(InitialCarsFeed());
 
-  CarsFeedRepository repository;
+  final CarsFeedRepository repository;
 
   List<CarModel> allCars = [];
   List<BrandModel> allBrands = [];

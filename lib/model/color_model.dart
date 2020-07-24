@@ -18,9 +18,4 @@ class ColorModel extends Equatable {
 
   @override
   List<Object> get props => [colorId];
-
-  @override
-  String toString() {
-    return 'ColorModel{colorId: $colorId, name: $name}';
-  }
 }

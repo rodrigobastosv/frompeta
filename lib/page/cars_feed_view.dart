@@ -23,12 +23,6 @@ class _CarsFeedViewState extends State<CarsFeedView> {
   }
 
   @override
-  void dispose() {
-    panelController.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,6 +53,7 @@ class _CarsFeedViewState extends State<CarsFeedView> {
         buildWhen: (previous, current) =>
             current is! OpenedSlidingPanel && current is! ClosedSlidingPanel,
         builder: (_, state) {
+          print(state);
           if (state is FetchInfoSuccess) {
             return SlidingUpPanel(
               defaultPanelState: PanelState.CLOSED,

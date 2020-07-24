@@ -45,9 +45,4 @@ class CarModel extends Equatable {
 
   @override
   List<Object> get props => [id];
-
-  @override
-  String toString() {
-    return 'CarModel{id: $id, imageUrl: $imageUrl, brandName: $brandName, modelName: $modelName, modelYear: $modelYear, fuelType: $fuelType, mileage: $mileage, transmissionType: $transmissionType, price: $price, brandId: $brandId, colorId: $colorId}';
-  }
 }

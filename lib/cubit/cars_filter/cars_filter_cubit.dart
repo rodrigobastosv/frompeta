@@ -5,7 +5,7 @@ import 'package:flutterdryve/model/color_model.dart';
 import 'cars_filter_state.dart';
 
 class CarsFilterCubit extends Cubit<CarsFilterState> {
-  CarsFilterCubit() : super(InitialCarsFilterState());
+  CarsFilterCubit() : super(InitialCarsFilter());
 
   List<BrandModel> pickedBrands = [];
   List<ColorModel> pickedColors = [];
@@ -63,7 +63,7 @@ class CarsFilterCubit extends Cubit<CarsFilterState> {
   void clearFilters() {
     pickedBrands = [];
     pickedColors = [];
-    emit(InitialCarsFilterState());
+    emit(InitialCarsFilter());
   }
 
   bool isBrandPicked(BrandModel brand) {

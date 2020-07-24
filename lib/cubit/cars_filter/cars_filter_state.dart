@@ -6,7 +6,7 @@ abstract class CarsFilterState extends Equatable {
   const CarsFilterState();
 }
 
-class InitialCarsFilterState extends CarsFilterState {
+class InitialCarsFilter extends CarsFilterState {
   @override
   List<Object> get props => [];
 }
