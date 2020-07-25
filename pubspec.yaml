@@ -34,6 +34,17 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.5
+  flutter_native_splash: ^0.1.9
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/dryve.png"
+
+flutter_native_splash:
+  image: assets/images/dryve.png
+  color: "0065ff"
 
 flutter:
   uses-material-design: true

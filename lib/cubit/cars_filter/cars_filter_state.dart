@@ -30,3 +30,12 @@ class ColorSelectionChanged extends CarsFilterState {
   @override
   List<Object> get props => [color, value];
 }
+
+class BrandsFiltered extends CarsFilterState {
+  BrandsFiltered({this.brands});
+
+  final List<BrandModel> brands;
+
+  @override
+  List<Object> get props => [brands];
+}

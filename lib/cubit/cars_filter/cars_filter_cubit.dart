@@ -66,6 +66,16 @@ class CarsFilterCubit extends Cubit<CarsFilterState> {
     emit(InitialCarsFilter());
   }
 
+  void filterBrands(List<BrandModel> allBrands, String term) {
+    if (term.isEmpty) {
+      emit(BrandsFiltered(brands: allBrands));
+    }
+    final filteredBrands = allBrands
+        .where((brand) => brand.name.toUpperCase().contains(term.toUpperCase()))
+        .toList();
+    emit(BrandsFiltered(brands: filteredBrands));
+  }
+
   bool isBrandPicked(BrandModel brand) {
     return pickedBrands.contains(brand);
   }
