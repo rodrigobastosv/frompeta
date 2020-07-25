@@ -67,13 +67,10 @@ class CarsFilterCubit extends Cubit<CarsFilterState> {
   }
 
   bool isBrandPicked(BrandModel brand) {
-    print('aaa');
     return pickedBrands.contains(brand);
   }
 
   bool isColorPicked(ColorModel color) {
-    print(pickedColors);
-    print(color);
     return pickedColors.contains(color);
   }
 }
