@@ -1,7 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutterdryve/cubit/cars_feed/cars_feed_cubit.dart';
 import 'package:flutterdryve/cubit/cars_filter/cars_filter_cubit.dart';
 import 'package:flutterdryve/cubit/cars_filter/cars_filter_state.dart';
@@ -18,6 +17,7 @@ class SettingsButton extends StatelessWidget {
       builder: (_, state) => Padding(
         padding: const EdgeInsets.only(right: 16),
         child: IconButton(
+          key: ValueKey('settings-btn'),
           icon: Badge(
             position: BadgePosition.topRight(),
             badgeContent: Text(

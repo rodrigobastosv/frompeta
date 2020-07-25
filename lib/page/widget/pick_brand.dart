@@ -12,7 +12,6 @@ class PickBrand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.bloc<CarsFilterCubit>();
     return BlocBuilder<CarsFilterCubit, CarsFilterState>(
       builder: (_, state) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,12 +78,12 @@ class PickBrand extends StatelessWidget {
                     ),
                   ],
                 ),
-                value: cubit.isBrandPicked(brand),
+                value: context.bloc<CarsFilterCubit>().isBrandPicked(brand),
                 onChanged: (value) {
                   if (value) {
-                    cubit.pickBrand(brand);
+                    context.bloc<CarsFilterCubit>().pickBrand(brand);
                   } else {
-                    cubit.unpickBrand(brand);
+                    context.bloc<CarsFilterCubit>().unpickBrand(brand);
                   }
                 },
               );

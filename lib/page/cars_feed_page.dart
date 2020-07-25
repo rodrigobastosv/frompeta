@@ -4,6 +4,7 @@ import 'package:flutterdryve/cubit/cars_feed/cars_feed_cubit.dart';
 import 'package:flutterdryve/cubit/cars_filter/cars_filter_cubit.dart';
 import 'package:flutterdryve/page/cars_feed_view.dart';
 import 'package:flutterdryve/repository/abstract/cars_feed_repository.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CarsFeedPage extends StatelessWidget {
   @override
@@ -19,7 +20,9 @@ class CarsFeedPage extends StatelessWidget {
           create: (_) => CarsFilterCubit(),
         ),
       ],
-      child: CarsFeedView(),
+      child: CarsFeedView(
+        panelController: PanelController(),
+      ),
     );
   }
 }

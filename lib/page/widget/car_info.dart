@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdryve/model/car_model.dart';
+import 'package:flutterdryve/utils/extensions.dart';
 
 class CarInfo extends StatelessWidget {
   CarInfo(this.car);
@@ -43,14 +44,14 @@ class CarInfo extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          '${car.transmissionType} · ${car.mileage} km',
+          '${car.transmissionType} · ${car.mileage.toString().formatNumber()} km',
           style: TextStyle(
             color: Color(0xFF768095),
           ),
         ),
         const SizedBox(height: 8),
         Text(
-          'R\$ ${car.price}',
+          'R\$ ${car.price.toString().formatCurrency()}',
           style: TextStyle(
             color: Color(0xFF1e2c4c),
             fontSize: 16,

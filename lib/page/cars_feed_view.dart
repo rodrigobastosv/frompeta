@@ -7,20 +7,19 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'widget/cars_filter.dart';
 import 'widget/cars_grid.dart';
+import 'widget/filter_header.dart';
 
 class CarsFeedView extends StatefulWidget {
+  CarsFeedView({@required this.panelController});
+
+  final PanelController panelController;
+
   @override
   _CarsFeedViewState createState() => _CarsFeedViewState();
 }
 
 class _CarsFeedViewState extends State<CarsFeedView> {
-  PanelController panelController;
-
-  @override
-  void initState() {
-    panelController = PanelController();
-    super.initState();
-  }
+  PanelController get panelController => widget.panelController;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,6 @@ class _CarsFeedViewState extends State<CarsFeedView> {
         buildWhen: (previous, current) =>
             current is! OpenedSlidingPanel && current is! ClosedSlidingPanel,
         builder: (_, state) {
-          print(state);
           if (state is FetchInfoSuccess) {
             return SlidingUpPanel(
               defaultPanelState: PanelState.CLOSED,
@@ -61,7 +59,7 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               backdropEnabled: true,
               minHeight: 0,
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              header: _buildHeader(),
+              header: FilterHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
             );
@@ -72,7 +70,7 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               backdropEnabled: true,
               minHeight: 0,
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              header: _buildHeader(),
+              header: FilterHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
             );
@@ -86,40 +84,6 @@ class _CarsFeedViewState extends State<CarsFeedView> {
             );
           }
         },
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-      ),
-      child: Row(
-        children: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_down,
-              size: 36,
-              color: Colors.black.withOpacity(0.25),
-            ),
-            onPressed: () => context.bloc<CarsFeedCubit>().closeSlidingPanel(),
-          ),
-          Expanded(
-            child: Text(
-              'Filtrar',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1e2c4c),
-              ),
-            ),
-          ),
-          const SizedBox(width: 50),
-        ],
       ),
     );
   }

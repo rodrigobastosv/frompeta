@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutterdryve/model/car_model.dart';
 
 class CarImage extends StatelessWidget {
