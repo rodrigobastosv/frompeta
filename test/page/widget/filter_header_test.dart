@@ -30,7 +30,7 @@ void main() {
           ),
         ),
       );
-      final closeBtn = find.byKey(ValueKey('close-sliding'));
+      final closeBtn = find.byKey(const ValueKey('close-sliding'));
       expect(closeBtn, findsOneWidget);
       await tester.tap(closeBtn);
       verify(mockCarsFeedCubit.closeSlidingPanel()).called(1);

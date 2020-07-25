@@ -105,6 +105,7 @@ void main() {
           ColorModel(colorId: '1', name: 'Azul'),
         ];
         final mockCarsFeedCubit = MockCarsFeedCubit();
+        when(mockCarsFeedCubit.isCarFavorite(any)).thenReturn(true);
         when(mockCarsFeedCubit.allCars).thenReturn(cars);
         when(mockCarsFeedCubit.allBrands).thenReturn(brands);
         when(mockCarsFeedCubit.allColors).thenReturn(colors);
@@ -173,6 +174,7 @@ void main() {
           ColorModel(colorId: '1', name: 'Azul'),
         ];
         final mockCarsFeedCubit = MockCarsFeedCubit();
+        when(mockCarsFeedCubit.isCarFavorite(any)).thenReturn(false);
         when(mockCarsFeedCubit.allCars).thenReturn(cars);
         when(mockCarsFeedCubit.allBrands).thenReturn(brands);
         when(mockCarsFeedCubit.allColors).thenReturn(colors);

@@ -23,7 +23,7 @@ class PickBrand extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF1e2c4c),
+                color: const Color(0xFF1e2c4c),
               ),
             ),
           ),
@@ -34,15 +34,15 @@ class PickBrand extends StatelessWidget {
                 contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xFFd3d5dc)),
+                  borderSide: const BorderSide(color: Color(0xFFd3d5dc)),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xFFd3d5dc)),
+                  borderSide: const BorderSide(color: Color(0xFFd3d5dc)),
                 ),
                 isDense: true,
                 hintText: 'Busca por nome...',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Color(0xFF768095),
                   fontSize: 16,
                   letterSpacing: -0.2,
@@ -50,7 +50,7 @@ class PickBrand extends StatelessWidget {
                 suffixIcon: Icon(
                   Icons.search,
                   size: 24,
-                  color: Color(0xFFa5abb7),
+                  color: const Color(0xFFa5abb7),
                 ),
               ),
             ),
@@ -69,10 +69,10 @@ class PickBrand extends StatelessWidget {
                       backgroundImage:
                           AssetImage(_getAssetByBrandId(brand.brandId)),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Text(
                       brand.name.capitalize(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF768095),
                       ),
                     ),

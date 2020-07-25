@@ -17,11 +17,12 @@ class SettingsButton extends StatelessWidget {
       builder: (_, state) => Padding(
         padding: const EdgeInsets.only(right: 16),
         child: IconButton(
-          key: ValueKey('settings-btn'),
+          key: const ValueKey('settings-btn'),
           icon: Badge(
             position: BadgePosition.topRight(),
             badgeContent: Text(
               context.bloc<CarsFilterCubit>().countFilters.toString(),
+              key: const ValueKey('count-filters'),
               style: TextStyle(
                 color: Colors.white,
               ),

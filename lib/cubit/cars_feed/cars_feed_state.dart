@@ -53,3 +53,21 @@ class CarsFiltered extends CarsFeedState {
   @override
   List<Object> get props => [cars, brands, colors];
 }
+
+class CarFavorited extends CarsFeedState {
+  CarFavorited(this.carId);
+
+  final String carId;
+
+  @override
+  List<Object> get props => [carId];
+}
+
+class CarUnfavorited extends CarsFeedState {
+  CarUnfavorited(this.carId);
+
+  final String carId;
+
+  @override
+  List<Object> get props => [carId];
+}

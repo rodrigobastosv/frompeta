@@ -102,7 +102,7 @@ void main() {
           ),
         ),
       );
-      final limparBtn = find.byKey(ValueKey('limpar-btn'));
+      final limparBtn = find.byKey(const ValueKey('limpar-btn'));
       expect(limparBtn, findsOneWidget);
       await tester.tap(limparBtn);
       verify(mockCarsFilterCubit.clearFilters()).called(1);
@@ -136,7 +136,7 @@ void main() {
           ),
         ),
       );
-      final aplicarBtn = find.byKey(ValueKey('aplicar-btn'));
+      final aplicarBtn = find.byKey(const ValueKey('aplicar-btn'));
       expect(aplicarBtn, findsOneWidget);
       await tester.tap(aplicarBtn);
       verify(

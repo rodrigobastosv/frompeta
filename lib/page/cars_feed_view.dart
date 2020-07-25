@@ -27,8 +27,8 @@ class _CarsFeedViewState extends State<CarsFeedView> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 16),
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/images/logo.png'),
           ),
@@ -37,7 +37,7 @@ class _CarsFeedViewState extends State<CarsFeedView> {
           'VW Seminovos',
           style: TextStyle(
             letterSpacing: -0.5,
-            color: Color(0xFF4b5670),
+            color: const Color(0xFF4b5670),
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
@@ -50,7 +50,10 @@ class _CarsFeedViewState extends State<CarsFeedView> {
         listenWhen: (previous, current) => current is ClosedSlidingPanel,
         listener: (_, state) => panelController.close(),
         buildWhen: (previous, current) =>
-            current is! OpenedSlidingPanel && current is! ClosedSlidingPanel,
+            current is! OpenedSlidingPanel &&
+            current is! ClosedSlidingPanel &&
+            current is! CarFavorited &&
+            current is! CarUnfavorited,
         builder: (_, state) {
           if (state is FetchInfoSuccess) {
             return SlidingUpPanel(
@@ -58,7 +61,8 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               controller: panelController,
               backdropEnabled: true,
               minHeight: 0,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
               header: FilterHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
@@ -69,18 +73,19 @@ class _CarsFeedViewState extends State<CarsFeedView> {
               controller: panelController,
               backdropEnabled: true,
               minHeight: 0,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
               header: FilterHeader(),
               panel: CarsFilter(),
               body: CarsGrid(cars: state.cars),
             );
           } else if (state is LoadingInfo) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            return Center(
-              child: Text('Deu ruim'),
+            return const Center(
+              child: Text('Um erro ocorreu!'),
             );
           }
         },

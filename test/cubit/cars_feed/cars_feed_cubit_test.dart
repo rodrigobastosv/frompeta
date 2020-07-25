@@ -13,6 +13,7 @@ void main() {
   group('CarsFeedCubit tests', () {
     CarsFeedCubit carsFeedCubit;
     MockCarsFeedRepository mockCarsFeedRepository;
+    MockSharedPreferencesService mockSharedPreferencesService;
 
     final carList = [
       CarModel(
@@ -44,8 +45,10 @@ void main() {
 
     setUp(() {
       mockCarsFeedRepository = MockCarsFeedRepository();
+      mockSharedPreferencesService = MockSharedPreferencesService();
       carsFeedCubit = CarsFeedCubit(
         repository: mockCarsFeedRepository,
+        sharedPreferencesService: mockSharedPreferencesService,
       );
     });
 
@@ -54,11 +57,49 @@ void main() {
     });
 
     test('asserts', () {
-      expect(() => CarsFeedCubit(repository: null), throwsAssertionError);
+      expect(
+          () => CarsFeedCubit(
+                repository: null,
+                sharedPreferencesService: MockSharedPreferencesService(),
+              ),
+          throwsAssertionError);
+
+      expect(
+          () => CarsFeedCubit(
+                repository: MockCarsFeedRepository(),
+                sharedPreferencesService: null,
+              ),
+          throwsAssertionError);
     });
 
     test('''Expects InitialCarsFeed to be the initial state''', () {
       expect(carsFeedCubit.state, equals(InitialCarsFeed()));
+    });
+
+    test('isCarFavorite', () {
+      carsFeedCubit.favoriteCarsMap = {
+        '1': true,
+      };
+      expect(
+        carsFeedCubit.isCarFavorite(
+          CarModel(
+            id: '1',
+            brandId: 1,
+            colorId: 1,
+          ),
+        ),
+        true,
+      );
+      expect(
+        carsFeedCubit.isCarFavorite(
+          CarModel(
+            id: '2',
+            brandId: 1,
+            colorId: 1,
+          ),
+        ),
+        false,
+      );
     });
 
     blocTest(
@@ -234,6 +275,46 @@ void main() {
             ColorModel(colorId: '1', name: 'Vermelho'),
           ],
         ),
+      ],
+    );
+
+    blocTest(
+      'Should favorite a car',
+      build: () {
+        carsFeedCubit.allCars = carList;
+        carsFeedCubit.allBrands = brandList;
+        carsFeedCubit.allColors = colorList;
+        when(mockSharedPreferencesService.getFavoriteCarsMap())
+            .thenAnswer((_) => Future.value({}));
+        when(mockSharedPreferencesService.favoriteCar(any))
+            .thenAnswer((_) => Future.value());
+        return carsFeedCubit;
+      },
+      act: (carsFeedCubit) async {
+        await carsFeedCubit.favoriteCar('1');
+      },
+      expect: [
+        CarFavorited('1'),
+      ],
+    );
+
+    blocTest(
+      'Should unfavorite a car',
+      build: () {
+        carsFeedCubit.allCars = carList;
+        carsFeedCubit.allBrands = brandList;
+        carsFeedCubit.allColors = colorList;
+        when(mockSharedPreferencesService.getFavoriteCarsMap())
+            .thenAnswer((_) => Future.value({}));
+        when(mockSharedPreferencesService.unfavoriteCar(any))
+            .thenAnswer((_) => Future.value());
+        return carsFeedCubit;
+      },
+      act: (carsFeedCubit) async {
+        await carsFeedCubit.unfavoriteCar('1');
+      },
+      expect: [
+        CarUnfavorited('1'),
       ],
     );
 

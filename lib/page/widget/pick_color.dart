@@ -25,7 +25,7 @@ class PickColor extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1e2c4c),
+                  color: const Color(0xFF1e2c4c),
                 ),
               ),
             ),
@@ -66,7 +66,8 @@ class ColorTile extends StatelessWidget {
         children: <Widget>[
           RoundCheckBox(
             size: 30,
-            borderColor: value ? Color(0xFF0065ff) : Color(0xFFdddddd),
+            borderColor:
+                value ? const Color(0xFF0065ff) : const Color(0xFFdddddd),
             isChecked: value,
             onTap: (value) {
               if (value) {
@@ -77,7 +78,7 @@ class ColorTile extends StatelessWidget {
             },
             checkedWidget: Icon(
               Icons.check,
-              color: Color(0xFF0065ff),
+              color: const Color(0xFF0065ff),
               size: 16,
             ),
             checkedColor: Theme.of(context).scaffoldBackgroundColor,
@@ -89,10 +90,10 @@ class ColorTile extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(
             color.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Color(0xFF768095),
             ),
@@ -107,11 +108,11 @@ class ColorTile extends StatelessWidget {
       case '1':
         return Colors.transparent;
       case '2':
-        return Color(0xFFd8dae1);
+        return const Color(0xFFd8dae1);
       case '3':
         return Colors.black;
       case '4':
-        return Color(0xFFfc4a40);
+        return const Color(0xFFfc4a40);
       default:
         return Colors.white;
     }

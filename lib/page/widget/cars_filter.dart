@@ -36,7 +36,7 @@ class CarsFilter extends StatelessWidget {
                       horizontal: 60,
                       vertical: 20,
                     ),
-                    key: ValueKey('limpar-btn'),
+                    key: const ValueKey('limpar-btn'),
                     onPressed: () =>
                         context.bloc<CarsFilterCubit>().clearFilters(),
                     child: Text(
@@ -55,7 +55,7 @@ class CarsFilter extends StatelessWidget {
                       horizontal: 60,
                       vertical: 20,
                     ),
-                    key: ValueKey('aplicar-btn'),
+                    key: const ValueKey('aplicar-btn'),
                     onPressed: () {
                       final brands =
                           context.bloc<CarsFilterCubit>().pickedBrands;

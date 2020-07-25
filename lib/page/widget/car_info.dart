@@ -18,7 +18,7 @@ class CarInfo extends StatelessWidget {
           text: TextSpan(
             style: TextStyle(
               letterSpacing: -0.5,
-              color: Color(0xFF4b5670),
+              color: const Color(0xFF4b5670),
               fontWeight: FontWeight.bold,
               fontFamily: 'CircularStd',
             ),
@@ -38,14 +38,14 @@ class CarInfo extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           '${car.modelYear} · ${car.fuelType}',
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF768095),
           ),
         ),
         const SizedBox(height: 8),
         Text(
           '${car.transmissionType} · ${car.mileage.toString().formatNumber()} km',
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF768095),
           ),
         ),
@@ -53,7 +53,7 @@ class CarInfo extends StatelessWidget {
         Text(
           'R\$ ${car.price.toString().formatCurrency()}',
           style: TextStyle(
-            color: Color(0xFF1e2c4c),
+            color: const Color(0xFF1e2c4c),
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
